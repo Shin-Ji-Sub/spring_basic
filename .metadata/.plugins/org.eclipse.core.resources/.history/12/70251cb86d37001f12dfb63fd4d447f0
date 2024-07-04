@@ -1,0 +1,36 @@
+package com.demoweb.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.demoweb.dto.BoardDto;
+
+@Controller
+@RequestMapping(path = { "/board" })
+public class BoardController {
+
+	@GetMapping(path = { "/list" })
+	public String list() {
+		
+		
+		return "board/list-without-page"; // /WEB-INF/views/ + board/list + .jsp
+	}
+	
+	@GetMapping(path = { "/write" })
+	public String writeForm() {
+		
+		return "board/write";
+	}
+	
+	@PostMapping(path = { "/write" })
+	public String write(@ModelAttribute("board") BoardDto boardDto) {   // @ModelAttribute("board") 생략 가능하지만, 써주면 정확한 방법
+		
+		
+		
+		return "redirect:/list";
+	}
+	
+}

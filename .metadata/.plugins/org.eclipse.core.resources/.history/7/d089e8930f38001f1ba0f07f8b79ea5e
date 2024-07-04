@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- namespace : 패키지이름.클래스이름 (저장된 경로와 일치하도록 작성) -->	
+<mapper namespace="com.demoweb.mapper.BoardMapper">
+	
+	<!-- <insert id="insertMember" parameterType="com.demoweb.dto.MemberDto"> -->
+	<insert id="insertBoard" parameterType="BoardDto" useGeneratedKeys="true" keyProperty="boardNo" keyColumn="boardno">
+		INSERT INTO board (boardno, title, writer, content) 
+		VALUES (BOARD_SEQUENCE.NEXTVAL, #{ title }, #{ writer }, #{ content })
+	</insert>
+	
+	<insert id="insertBoard2" parameterType="BoardDto">
+		<selectKey keyProperty="boardNo" order="AFTER" resultType="int">
+			SELECT BOARD_SEQUENCE.CURRVAL FROM DUAL
+		</selectKey>
+		INSERT INTO board (boardno, title, writer, content) 
+		VALUES (BOARD_SEQUENCE.NEXTVAL, #{ title }, #{ writer }, #{ content })
+	</insert>
+	
+	<insert id="insertBoard3" parameterType="BoardDto">
+		<selectKey keyProperty="boardNo" order="BEFORE" resultType="int">
+			SELECT BOARD_SEQUENCE.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO board (boardno, title, writer, content) 
+		VALUES (BOARD_SEQUENCE.NEXTVAL, #{ title }, #{ writer }, #{ content })
+	</insert>
+	
+	<insert id="insertBoardAttach" parameterType="BoardAttachDto">
+		INSERT INTO boardattach (attachno, boardno, userfilename, savedfilename) VALUES (BOARDATTACH_SEQUENCE.NEXTVAL, #{ boardNo }, #{ userFileName }, #{ savedFileName })
+	</insert>
+	
+	<select id="selectAllBoard" resultType="BoardDto">
+		SELECT boardNo, title, writer, readCount, writeDate, modifyDate, deleted
+		FROM board 
+		ORDER BY boardno DESC
+	</select>
+	
+	<select id="selectBoardByBoardNo" parameterType="int" resultType="BoardDto">
+		SELECT boardNo, title, writer, content, readCount, writeDate, modifyDate
+		FROM board
+		WHERE boardno = #{ boardNo } AND deleted = '0'
+	</select>
+	
+	
+</mapper>

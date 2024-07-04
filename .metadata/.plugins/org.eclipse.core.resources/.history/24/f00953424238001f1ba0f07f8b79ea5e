@@ -1,0 +1,19 @@
+package com.coffeeorderproject.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.coffeeorderproject.dto.BoardAttachDto;
+import com.coffeeorderproject.dto.BoardCommentDto;
+import com.coffeeorderproject.dto.BoardDto;
+import com.coffeeorderproject.dto.OrdersDto;
+import com.coffeeorderproject.dto.ProductDto;
+import com.coffeeorderproject.dto.UserDto;
+
+@Mapper
+public interface BoardMapper {
+
+	List<BoardDto> selectReviewBoardByRange(int start, int count);
+	
+}

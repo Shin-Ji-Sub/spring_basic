@@ -1,0 +1,24 @@
+1719211322739	Delete elements
+1719211897954	Rename package 'com.example.spring.mvc.config'
+1719211919808	Rename package 'com.example.spring.mvc.web'
+1719211927463	Delete element
+1719211938753	Delete element
+1719211953022	Rename package 'com.example.spring.mvc.controller'
+1719294106774	Delete element
+1719294269116	Rename type 'AccountService'
+1719294918510	Extract interface 'AccountService'
+1719294962931	Move compilation unit
+1719295555239	Rename type 'AccountDao'
+1719295573956	Extract interface 'AccountDao'
+1719297568437	Delete element
+1719299192365	Rename type 'DemoWebApplicationInitializer'
+1719555368606	Copy compilation unit
+1719557923778	Delete element
+1719562275019	Copy elements
+1719562288515	Copy folder
+1719562375016	Copy compilation units
+1719562383049	Copy package
+1719562408426	Copy compilation units
+1719562447493	Copy package
+1719562463614	Copy package
+1719562556968	Copy package

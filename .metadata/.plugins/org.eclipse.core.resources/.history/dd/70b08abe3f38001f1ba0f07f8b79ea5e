@@ -1,0 +1,15 @@
+package com.coffeeorderproject.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class BoardController {
+
+	@GetMapping(path = { "/inquiry1on1" })
+	public String inquiry() {
+		
+	}
+	
+}

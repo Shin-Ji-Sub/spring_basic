@@ -1,0 +1,14 @@
+package com.example.spring.aop;
+
+import org.aspectj.lang.JoinPoint;
+
+public class Logger {
+
+//	public void logBefore() {   // Before 는 전달인자가 필요없으면 없어도 됨
+	public void logBefore(JoinPoint joinPoint) {   // JoinPoint : 현재 호출되고 있는 메서드 정보 저장
+		System.out.printf("===========Logger.logBefore : %s.%s\n", 
+						  joinPoint.getSignature().getDeclaringTypeName(),
+						  joinPoint.getSignature().getName());
+	}
+	
+}

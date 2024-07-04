@@ -1,0 +1,5 @@
+package com.coffeeorderproject.mapper;
+
+public interface UserMapper {
+
+}

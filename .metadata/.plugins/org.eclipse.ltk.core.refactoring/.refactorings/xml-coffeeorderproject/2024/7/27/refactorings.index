@@ -1,0 +1,17 @@
+1719799698770	Rename package 'com.demoweb.mapper'
+1719799757706	Rename compilation unit 'MemberMapper.java'
+1719803802377	Delete element
+1719803808590	Delete elements
+1719903234462	Rename compilation unit 'BoardController.java'
+1719903243307	Delete element
+1719903655493	Rename package 'com.demoweb.ui'
+1719903742157	Delete element
+1719903901973	Rename type 'BoardService'
+1719903917115	Extract interface 'BoardService'
+1719903973785	Copy compilation unit
+1719903993705	Rename type 'ReviewMapper'
+1719904395497	Copy file
+1719989680578	Delete element
+1719989779363	Rename type 'ReviewController'
+1719996632901	Delete element
+1719996666079	Delete element

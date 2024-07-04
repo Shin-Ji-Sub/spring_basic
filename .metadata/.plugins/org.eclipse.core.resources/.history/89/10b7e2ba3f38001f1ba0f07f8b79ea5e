@@ -1,0 +1,5 @@
+package com.coffeeorderproject.controller;
+
+public class BoardController {
+
+}

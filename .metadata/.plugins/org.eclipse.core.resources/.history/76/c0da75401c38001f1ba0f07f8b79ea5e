@@ -1,0 +1,17 @@
+package com.demoweb.view;
+
+import java.util.Map;
+
+import org.springframework.web.servlet.View;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class DownloadView2 implements View {
+
+	@Override
+	public void render(Map<String, ?> model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		
+	}
+
+}

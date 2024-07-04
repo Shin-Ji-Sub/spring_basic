@@ -1,0 +1,116 @@
+package admin.coffeeorderproject.dto;
+
+import java.util.Date;
+
+public class OrdersDto {
+	private int orderId;
+	private String userId;
+	private String orderOption;
+	private Date orderDate;
+	private String orderStatus;
+	private String orderPayment;
+
+	
+	// 주문관리 탭에서 사용할 변수 Dao
+	private String userName;
+	private String userPhone;
+	private String prodName;
+	private int prodNo;
+	private int cartQuantity;
+	private boolean couponuse; // 쿠폰 사용여부
+	private int totalPrice;
+	private String serchtext;
+	
+	
+	
+	public int getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getOrderOption() {
+		return orderOption;
+	}
+	public void setOrderOption(String orderOption) {
+		this.orderOption = orderOption;
+	}
+	public Date getOrderDate() {
+		return orderDate;
+	}
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+	public String getOrderPayment() {
+		return orderPayment;
+	}
+	public void setOrderPayment(String orderPayment) {
+		this.orderPayment = orderPayment;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getUserPhone() {
+		return userPhone;
+	}
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
+	}
+	public String getProdName() {
+		return prodName;
+	}
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
+	}
+	public int getCartQuantity() {
+		return cartQuantity;
+	}
+	public void setCartQuantity(int cartQuantity) {
+		this.cartQuantity = cartQuantity;
+	}
+
+	public boolean isCouponuse() {
+		return couponuse;
+	}
+	public void setCouponuse(boolean couponuse) {
+		this.couponuse = couponuse;
+	}
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	public String getSerchtext() {
+		return serchtext;
+	}
+	public void setSerchtext(String serchtext) {
+		this.serchtext = serchtext;
+	}
+	public int getProdNo() {
+		return prodNo;
+	}
+	public void setProdNo(int prodNo) {
+		this.prodNo = prodNo;
+	}
+	
+	
+	
+	
+
+}

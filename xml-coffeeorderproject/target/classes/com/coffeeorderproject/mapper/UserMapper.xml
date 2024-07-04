@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.coffeeorderproject.mapper.UserMapper">
+
+	<insert id="insertUser" parameterType="UserDto">
+		INSERT INTO user (userid, username, usernickname, userphone, useremail, userpw) 
+		VALUES (#{ userId }, #{ userName }, #{ userNickname }, #{ userPhone }, #{ userEmail }, #{ userPw })
+	</insert>
+	
+	<select id="idCheck" parameterType="string" resultType="int">
+		SELECT COUNT(userid) from user WHERE userid = #{ id }
+	</select>
+	
+	<select id="selectUser" parameterType="UserDto" resultType="UserDto">
+		SELECT u.userid, username, usernickname, userphone, useremail, userpw, useradmin, userregidate, useractive, c.couponid 
+		FROM user u
+		LEFT JOIN coupon c ON u.userid = c.userid 
+		WHERE u.userid = #{ userId } AND u.userpw = #{ userPw } AND u.useractive = false
+	</select>
+	
+	<select id="selectUserEmail" parameterType="string" resultType="UserDto">
+		SELECT useremail from user WHERE userid = #{ id }
+	</select>
+	
+	<update id="updateUserPw" parameterType="hashmap">
+		UPDATE user SET userpw = #{ newPw } WHERE userid = #{ userId }
+	</update>
+	
+	<update id="updateUser" parameterType="string">
+		UPDATE user SET useractive = 1 WHERE userid = #{ userId }
+	</update>
+
+</mapper>

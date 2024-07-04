@@ -1,0 +1,47 @@
+package com.coffeeorderproject.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+@RequestMapping(path = { "/board" })
+public class ReviewController {
+
+	@GetMapping(path = { "/review" })
+	public String review(@RequestParam(name="pageNo", defaultValue = "1") int pageNo) {
+		
+		int pageSize = 5;
+		int pagerSize = 3;
+		int dataCount = boardService.getBoardCount();
+		/* String linkUrl = "review"; */
+		
+		String uri = req.getRequestURI();
+		String linkUrl = uri.substring(uri.lastIndexOf("/")+1);
+		
+		String queryString = req.getQueryString();
+		
+		
+		
+		// int start = pageSize * (page - 1) + 1;
+		int start = pageSize * (page - 1);
+		
+		ThePager pager = new ThePager(dataCount, page, pageSize, pagerSize, linkUrl, queryString);
+		
+		List<BoardDto> boardList = boardService.findReviewBoardByRange(start, pageSize);
+		List<ProductDto> prodList = boardService.findProdNameList();
+		
+		req.setAttribute("prodList", prodList);
+		req.setAttribute("boardList", boardList);
+		req.setAttribute("pager", pager);
+		req.setAttribute("pageNo", page);
+		
+
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/userViews/user-boardpage/review.jsp");
+		rd.forward(req, resp);
+		
+		return "";
+	}
+	
+}
