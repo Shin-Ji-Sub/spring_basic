@@ -14,6 +14,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import com.demoweb.dao.MemberDao;
 import com.demoweb.dao.OracleMemberDao;
@@ -30,6 +34,7 @@ import com.demoweb.service.BoardServiceImpl;
 
 @Configuration
 @MapperScan(basePackages = { "com.demoweb.mapper" })  // == <mybatis:scan base-package="com.demoweb.mapper"/>
+@EnableTransactionManagement // <tx:annotation-driven 과 같은 역할
 public class RootConfiguration {
 	
 	@Bean
@@ -63,7 +68,20 @@ public class RootConfiguration {
 	@Bean BoardService boardService(BoardMapper boardMapper) throws Exception {
 		BoardServiceImpl boardService = new BoardServiceImpl();
 		boardService.setBoardMapper(boardMapper);
+		boardService.setTransactionTemplate(transactionTemplate());
 		return boardService;
+	}
+	
+	@Bean PlatformTransactionManager transactionManager() {
+		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
+		transactionManager.setDataSource(dataSource());
+		return transactionManager();
+	}
+	
+	@Bean TransactionTemplate transactionTemplate() {
+		TransactionTemplate transactionTemplate = new TransactionTemplate();
+		transactionTemplate.setTransactionManager(transactionManager());
+		return transactionTemplate;
 	}
 	
 }

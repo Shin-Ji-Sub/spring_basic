@@ -97,8 +97,12 @@ public class BoardController {
 		}
 		
 		board.setAttachments(attachments);
-		boardService.writeBoard(board);
 		
+		try {
+			boardService.writeBoard(board);
+		} catch (Exception ex) {
+			System.out.println("글쓰기 실패");
+		}
 		
 		return "redirect:list";
 	}

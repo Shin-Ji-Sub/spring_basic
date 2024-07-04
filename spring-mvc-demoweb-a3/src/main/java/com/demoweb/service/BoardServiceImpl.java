@@ -3,6 +3,13 @@ package com.demoweb.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
+
 import com.demoweb.dto.BoardAttachDto;
 import com.demoweb.dto.BoardCommentDto;
 import com.demoweb.dto.BoardDto;
@@ -15,15 +22,64 @@ public class BoardServiceImpl implements BoardService {
 	@Setter
 	private BoardMapper boardMapper;
 	
+	@Setter
+	private TransactionTemplate transactionTemplate;
+	
+//	@Override
+//	public void writeBoard(BoardDto board) {
+//		// board.getBoardNo() : 아직 미정 - 0
+//		boardMapper.insertBoard2(board); // board 테이블에 데이터 저장 -> boardNo 결정 (DB에서)
+//		// board.getBoardNo() : 새로 만든 글 번호
+//		
+//		for (BoardAttachDto attach : board.getAttachments()) {
+//			attach.setBoardNo(board.getBoardNo()); // 위 게시글 insert 후 생성된 글번호 저장
+//			boardMapper.insertBoardAttach(attach); // boardattach 테이블에 데이터 저장
+//		}
+//		
+//	}
+//	@Override
+//	public void writeBoard(BoardDto board) {
+//		
+//		// transactionManager 를 사용해서 트랜젝션을 시작하고 doIntransaction() 호출
+//		// TransactionStatus.setRollbackOnly() 호출 -> rollback, 그렇지 않으면 자동 commit
+//		transactionTemplate.execute(new TransactionCallback<Void>() {
+//
+//			@Override
+//			public Void doInTransaction(TransactionStatus status) {
+//
+//				try {
+//					boardMapper.insertBoard2(board); 
+//					
+//					int x = 10 / 0;  // 트랜젝션 테스트를 위해 강제 예외 발생
+//					
+//					for (BoardAttachDto attach : board.getAttachments()) {
+//						attach.setBoardNo(board.getBoardNo());
+//						boardMapper.insertBoardAttach(attach);
+//					}
+//				} catch (Exception ex) {
+//					System.out.println("글쓰기 실패");
+//					status.setRollbackOnly();
+//				}
+//				
+//				return null;
+//			}
+//			
+//		});
+//		
+//	}
 	@Override
+	@Transactional(rollbackFor = Exception.class, 
+				   propagation = Propagation.REQUIRED, // propagation = Propagation.REQUIRED : default 값
+				   isolation = Isolation.READ_COMMITTED) // isolation = Isolation.READ_COMMITTED : READ_COMMITTED 가 default 값
 	public void writeBoard(BoardDto board) {
-		// board.getBoardNo() : 아직 미정 - 0
-		boardMapper.insertBoard2(board); // board 테이블에 데이터 저장 -> boardNo 결정 (DB에서)
-		// board.getBoardNo() : 새로 만든 글 번호
+		
+		boardMapper.insertBoard2(board); 
+		
+		int x = 10 / 0;  // 트랜젝션 테스트를 위해 강제 예외 발생
 		
 		for (BoardAttachDto attach : board.getAttachments()) {
-			attach.setBoardNo(board.getBoardNo()); // 위 게시글 insert 후 생성된 글번호 저장
-			boardMapper.insertBoardAttach(attach); // boardattach 테이블에 데이터 저장
+			attach.setBoardNo(board.getBoardNo());
+			boardMapper.insertBoardAttach(attach);
 		}
 		
 	}

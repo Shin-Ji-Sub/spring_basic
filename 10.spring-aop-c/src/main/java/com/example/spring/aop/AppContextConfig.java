@@ -7,7 +7,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
 @EnableAspectJAutoProxy
-@ComponentScan(basePackages = { "com.example.spring.aop" })
 public class AppContextConfig {
 
 	@Bean
@@ -20,9 +19,9 @@ public class AppContextConfig {
 		return new TestB();
 	}
 	
-//	@Bean
-//	public Logger logger() {
-//		return new Logger();
-//	}
+	@Bean
+	public Logger logger() {
+		return new Logger();
+	}
 	
 }
